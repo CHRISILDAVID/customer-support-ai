@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+.env
+*.env
+
+# Mac/Linux system files
+.DS_Store
+
+# VSCode or PyCharm config (optional)
+.vscode/
+.idea/
+
+# Logs or cache
+*.log
+.cache/
+*.db
+
+# Model, vector, and embeddings
+embeddings/chroma_db/
+*.parquet
+*.pkl
+
+# Uploaded ZIPs or data dumps
+*.zip
+data/uploads/

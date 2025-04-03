@@ -1,0 +1,31 @@
+# Core Multi-Agent & LLM Frameworks
+crewai
+langchain
+langchain-core
+langchain-community
+
+# Ollama LLM integration
+ollama
+
+# Vector DB & Embeddings
+chromadb
+faiss-cpu
+sentence-transformers
+
+# API & Web Server
+fastapi
+uvicorn
+
+# Data Handling
+pandas
+pydantic
+python-dotenv
+pyyaml
+
+# Testing
+pytest
+
+# Utilities
+tqdm
+requests
+
