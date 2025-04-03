@@ -1,7 +1,8 @@
-# agents/escalation_router_agent.py
-
 from crewai import Agent
-from langchain_community.chat_models import ChatOllama
+from langchain_ollama import ChatOllama
+from tools.team_routing_map import TeamRoutingMap
+
+routing_map = TeamRoutingMap()
 
 class EscalationRouterAgent:
     def __init__(self):
@@ -17,7 +18,8 @@ class EscalationRouterAgent:
             ),
             verbose=True,
             allow_delegation=False,
-            tools=[],  # Future: Plug in team_routing_map tool from /tools
+            output_json=True,
+            tools=[routing_map.route],  # ✅ Using the method decorated with @tool
             llm=ChatOllama(model="ollama/mistral", temperature=0.2)
         )
 

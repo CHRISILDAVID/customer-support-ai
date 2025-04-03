@@ -11,7 +11,7 @@ from tools.vector_search_tool import VectorSearchTool
 
 def run_workflow(conversation_text: str):
     # 🔍 Load vector search tool
-    vector_tool = VectorSearchTool().as_langchain_tool()
+    vector_tool = VectorSearchTool().retrieve
 
     # 🧠 Step 1: Summarize
     summarizer_task = SummarizerTask(conversation_text).build()

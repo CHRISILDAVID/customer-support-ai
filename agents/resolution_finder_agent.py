@@ -1,7 +1,7 @@
-# agents/resolution_finder_agent.py
-
 from crewai import Agent
-from langchain_community.chat_models import ChatOllama
+from langchain_ollama import ChatOllama
+from tools.vector_search_tool import VectorSearchTool
+vector_tool = VectorSearchTool()
 
 class ResolutionFinderAgent:
     def __init__(self):
@@ -18,7 +18,8 @@ class ResolutionFinderAgent:
             ),
             verbose=True,
             allow_delegation=False,
-            tools=[],  # Later: plug in vector search over historical_tickets/knowledge_base
+            output_json=True,
+            tools=[vector_tool.retrieve],
             llm=ChatOllama(model="ollama/mistral", temperature=0.3)
         )
 

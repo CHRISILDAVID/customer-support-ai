@@ -1,5 +1,4 @@
-# tools/team_routing_map.py
-
+from crewai.tools import tool
 import json
 import os
 
@@ -18,3 +17,10 @@ class TeamRoutingMap:
 
     def route_bulk(self, action_items: list) -> dict:
         return {item: self.get_team_for_action(item) for item in action_items}
+
+    @tool("TeamRouter")
+    def route(self, query: str) -> str:
+        """
+        Routes a single escalation action to the correct internal team using a routing map.
+        """
+        return self.get_team_for_action(query)

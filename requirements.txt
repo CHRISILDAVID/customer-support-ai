@@ -3,6 +3,7 @@ crewai
 langchain
 langchain-core
 langchain-community
+langchain_ollama
 
 # Ollama LLM integration
 ollama

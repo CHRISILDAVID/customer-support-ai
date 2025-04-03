@@ -1,7 +1,5 @@
-# agents/summarizer_agent.py
-
 from crewai import Agent
-from langchain_community.chat_models import ChatOllama
+from langchain_ollama import ChatOllama
 
 class SummarizerAgent:
     def __init__(self):
@@ -19,7 +17,8 @@ class SummarizerAgent:
             ),
             verbose=True,
             allow_delegation=False,
-            tools=[],  # Add summarization-specific tools if needed
+            output_json=True,
+            tools=[],
             llm=ChatOllama(model="ollama/mistral", temperature=0.3)
         )
 

@@ -1,7 +1,5 @@
-# agents/action_extractor_agent.py
-
 from crewai import Agent
-from langchain_community.chat_models import ChatOllama
+from langchain_ollama import ChatOllama
 
 class ActionExtractorAgent:
     def __init__(self):
@@ -17,7 +15,8 @@ class ActionExtractorAgent:
             ),
             verbose=True,
             allow_delegation=False,
-            tools=[],  # Later: add ticket creation or task assignment tools
+            output_json=True,
+            tools=[],
             llm=ChatOllama(model="ollama/mistral", temperature=0.3)
         )
 

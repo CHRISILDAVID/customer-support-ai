@@ -1,7 +1,5 @@
-# agents/time_estimator_agent.py
-
 from crewai import Agent
-from langchain_community.chat_models import ChatOllama
+from langchain_ollama import ChatOllama
 
 class TimeEstimatorAgent:
     def __init__(self):
@@ -18,7 +16,8 @@ class TimeEstimatorAgent:
             ),
             verbose=True,
             allow_delegation=False,
-            tools=[],  # Later: hook to regression model or ticket timeline embeddings
+            output_json=True,
+            tools=[],
             llm=ChatOllama(model="ollama/mistral", temperature=0.4)
         )
 

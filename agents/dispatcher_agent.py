@@ -1,7 +1,5 @@
-# agents/dispatcher_agent.py
-
 from crewai import Agent
-from langchain_community.chat_models import ChatOllama
+from langchain_ollama import ChatOllama
 
 class DispatcherAgent:
     def __init__(self):
@@ -18,7 +16,8 @@ class DispatcherAgent:
             ),
             verbose=True,
             allow_delegation=False,
-            tools=[],  # Future: add DB/API tools for dispatching
+            output_json=True,
+            tools=[],
             llm=ChatOllama(model="ollama/mistral", temperature=0.2)
         )
 
