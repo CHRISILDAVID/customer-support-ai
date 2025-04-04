@@ -11,7 +11,7 @@ from tools.vector_search_tool import VectorSearchTool
 
 def run_workflow(conversation_text: str):
     # 🔍 Load vector search tool
-    vector_tool = VectorSearchTool().retrieve
+    vector_tool = VectorSearchTool()
 
     # 🧠 Step 1: Summarize
     summarizer_task = SummarizerTask(conversation_text).build()
@@ -24,7 +24,7 @@ def run_workflow(conversation_text: str):
         summary=summarizer_task.output,
         actions=extractor_task.output
     ).build()
-    resolver_task.tools = [vector_tool]
+    resolver_task.tools = [vector_tool.retrieve]
 
     # 🧠 Step 4: Route if Escalation Required
     router_task = EscalationRouterTask(actions=extractor_task.output).build()
@@ -61,7 +61,7 @@ def run_workflow(conversation_text: str):
     result = crew.kickoff()
     return result
 
-
+"""
 if __name__ == "__main__":
     import argparse
 
@@ -74,3 +74,4 @@ if __name__ == "__main__":
 
     output = run_workflow(conversation_text)
     print("\n📦 Final Support Response:\n", output)
+"""
