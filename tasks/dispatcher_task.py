@@ -15,17 +15,21 @@ class DispatcherTask:
     def build(self):
         return Task(
             description=(
-                "Aggregate the outputs from all previous steps and prepare a final response "
-                "for the support team or customer system. Format it clearly and include:\n\n"
+                "Aggregate the outputs from all previous steps and prepare a final response for the support team or customer system."
+                "Your job is to compile the following information into a final response. "
+                "After preparing the message, determine what status it reflects:\n"
+                "- If the issue seems completely resolved, respond with status `resolved`.\n"
+                "- If the resolution might not be sufficient, mark it `continue`.\n"
+                "- If it's unresolved or needs human help, mark it `escalate`.\n\n"
+                "Return a JSON with keys: `reply`, `status` (one of: resolved, continue, escalate)\n\n"
                 f"Summary:\n{self.summary}\n\n"
                 f"Actions:\n{self.actions}\n\n"
-                f"Suggested Resolution:\n{self.resolution}\n\n"
-                f"Routing Info:\n{self.routing}\n\n"
-                f"Estimated Time to Resolution:\n{self.eta}"
+                f"Resolution:\n{self.resolution}\n\n"
+                f"Routing: (Optional, TBD if escalation)\n{self.routing}\n\n"
+                f"ETA:\n{self.eta}"
             ),
             expected_output=(
-                "A structured and complete JSON-style output that can be sent to a downstream system. "
-                "It should include all five sections clearly, and be suitable for logging or API delivery."
+                '{ "reply": "message to show customer", "status": "resolved" | "continue" | "escalate" }'
             ),
             agent=self.agent
         )
